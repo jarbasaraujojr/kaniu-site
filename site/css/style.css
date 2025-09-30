@@ -101,10 +101,6 @@ body {
   font-weight: 500;
   border: none;
   transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Botões não esticam, não colapsam */
-.status-filter-btn {
   flex: 0 0 auto;
 }
 
