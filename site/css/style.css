@@ -54,14 +54,13 @@ body {
   margin: 0;
 }
 
-/* FILTROS */
 .filter-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  flex-wrap: wrap;         /* permite quebrar linha */
+  justify-content: flex-start; /* alinha à esquerda */
   align-items: center;
-  flex-grow: 1;
   gap: 10px;
+  margin-left: auto;       /* empurra para a direita sem cortar */
 }
 
 .status-filter-btn {
