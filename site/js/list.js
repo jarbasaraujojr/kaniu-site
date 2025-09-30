@@ -1,37 +1,37 @@
 const API_URL = "/api/animais"; // proxy do nginx → Supabase/n8n
 
 async function loadAnimals() {
-  const res = await fetch(API_URL);
-  const data = await res.json();
+  try {
+    const res = await fetch("/api/animals");
+    const data = await res.json();
 
-  const container = document.getElementById("animal-list");
-  container.innerHTML = "";
+    const container = document.getElementById("animal-list");
+    container.innerHTML = "";
 
-  if (!data || data.length === 0) {
-    container.innerHTML = "<p>Nenhum animal encontrado.</p>";
-    return;
+    data.animals.forEach(animal => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${animal.picture_url || 'https://via.placeholder.com/150'}" alt="${animal.name}">
+        <h3>${animal.name}</h3>
+        <p><strong>Espécie:</strong> ${animal.species || "-"}</p>
+        <p><strong>Raça:</strong> ${animal.breed || "-"}</p>
+        <p><strong>Cor:</strong> ${animal.color || "-"}</p>
+        <p><strong>Porte:</strong> ${animal.size || "-"}</p>
+        <p><strong>Sexo:</strong> ${animal.sex || "-"}</p>
+        <p><strong>Nascimento:</strong> ${animal.birth_date || "-"}</p>
+        <p><strong>Abrigo:</strong> ${animal.shelter || "-"}</p>
+        <p><strong>Peso atual:</strong> ${animal.latest_weight ? animal.latest_weight + " kg" : "-"}</p>
+        <p><strong>Favoritos:</strong> ${animal.favorites_count}</p>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error("Erro ao carregar animais:", err);
   }
-
-  data.forEach(animal => {
-    const card = `
-      <a href="animal.html?id=${animal.animal_id}" class="animal-list-link">
-        <div class="animal-strip">
-          <div class="animal-photo-list-container">
-            <img class="animal-photo-list" src="${animal.foto}" alt="Foto de ${animal.nome}"/>
-          </div>
-          <div class="list-content">
-            <h3>${animal.nome}</h3>
-            <div class="characteristics-container">
-              <span class="characteristic-box">${animal.especie}</span>
-              <span class="characteristic-box">${animal.sexo}</span>
-              <span class="characteristic-box">${animal.faixa_etaria}</span>
-              <span class="characteristic-box">${animal.porte}</span>
-            </div>
-          </div>
-        </div>
-      </a>`;
-    container.insertAdjacentHTML("beforeend", card);
-  });
 }
 
+// carregar ao iniciar
 loadAnimals();
