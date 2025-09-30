@@ -166,31 +166,34 @@ body {
   font-weight: 500;
   white-space: nowrap;
 }
+
 .animal-card {
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  padding: 10px;
-  margin: 10px;
-  width: 220px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 8px;
+  margin: 8px;
+  width: 200px;
   display: inline-block;
   vertical-align: top;
   text-align: center;
 }
 
 .animal-card img {
-  max-width: 100%;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
   border-radius: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .animal-card h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin: 4px 0;
 }
 
 .animal-card p {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   margin: 2px 0;
+  color: #555;
 }
-
