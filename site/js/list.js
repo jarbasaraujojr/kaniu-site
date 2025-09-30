@@ -12,23 +12,16 @@ async function loadAnimals() {
       const card = document.createElement("div");
       card.className = "animal-card";
 
-      // mapeamento de valores
-      const sex = animal.sex === true ? "Macho" : animal.sex === false ? "Fêmea" : "-";
-      const size = animal.size || "-";
-      const species = animal.species || "-";
-      const breed = animal.breed || "-";
-      const color = animal.color || "-";
-      const birth = animal.birth_date || "-";
-      const shelter = animal.shelter || "-";
-
       card.innerHTML = `
         <img src="${animal.picture_url || 'https://via.placeholder.com/150'}" alt="${animal.name}">
         <h3>${animal.name}</h3>
-        <p>${species} • ${breed}</p>
-        <p>${color} • ${size}</p>
-        <p>${sex}</p>
-        <p>Nasc.: ${birth}</p>
-        <p>Abrigo: ${shelter}</p>
+        <div class="characteristics-container">
+          <div class="characteristic-box">${animal.species || "-"}</div>
+          <div class="characteristic-box">${animal.breed || "-"}</div>
+          <div class="characteristic-box">${animal.color || "-"}</div>
+          <div class="characteristic-box">${animal.size || "-"}</div>
+          <div class="characteristic-box">${animal.sex || "-"}</div>
+        </div>
       `;
 
       container.appendChild(card);
