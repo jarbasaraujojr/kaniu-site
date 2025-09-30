@@ -26,7 +26,7 @@ async function loadAnimals() {
                 <span class="characteristic-box">${animal.species || "-"}</span>
                 <span class="characteristic-box">${animal.sex || "-"}</span>
                 <span class="characteristic-box">${animal.size || "-"}</span>
-                <span class="characteristic-box">${animal.color || "-"}</span>
+                <span class="characteristic-box">${animal.age_range || "-"}</span>
               </div>
             </div>
           </div>
