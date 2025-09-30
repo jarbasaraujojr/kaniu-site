@@ -10,20 +10,16 @@ async function loadAnimals() {
 
     data.animals.forEach(animal => {
       const card = document.createElement("div");
-      card.className = "card";
+      card.className = "animal-card";
 
       card.innerHTML = `
         <img src="${animal.picture_url || 'https://via.placeholder.com/150'}" alt="${animal.name}">
         <h3>${animal.name}</h3>
-        <p><strong>Espécie:</strong> ${animal.species || "-"}</p>
-        <p><strong>Raça:</strong> ${animal.breed || "-"}</p>
-        <p><strong>Cor:</strong> ${animal.color || "-"}</p>
-        <p><strong>Porte:</strong> ${animal.size || "-"}</p>
-        <p><strong>Sexo:</strong> ${animal.sex || "-"}</p>
-        <p><strong>Nascimento:</strong> ${animal.birth_date || "-"}</p>
-        <p><strong>Abrigo:</strong> ${animal.shelter || "-"}</p>
-        <p><strong>Peso atual:</strong> ${animal.latest_weight ? animal.latest_weight + " kg" : "-"}</p>
-        <p><strong>Favoritos:</strong> ${animal.favorites_count}</p>
+        <p>${animal.species || "-"} • ${animal.breed || "-"}</p>
+        <p>${animal.color || "-"} • ${animal.size || "-"}</p>
+        <p>${animal.sex || "-"}</p>
+        <p>Nasc.: ${animal.birth_date || "-"}</p>
+        <p>Abrigo: ${animal.shelter || "-"}</p>
       `;
 
       container.appendChild(card);
@@ -33,5 +29,4 @@ async function loadAnimals() {
   }
 }
 
-// carregar ao iniciar
 loadAnimals();
