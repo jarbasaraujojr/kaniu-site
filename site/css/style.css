@@ -34,16 +34,20 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
+
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Header container */
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* logo à esquerda, filtros à direita */
+  justify-content: space-between;
+  flex-wrap: wrap;        /* para quebrar linha */
   gap: 12px;
   width: 100%;
-  flex-wrap: wrap;                /* permite quebrar linha quando preciso */
+  box-sizing: border-box;
 }
 
 .header-logo {
@@ -55,6 +59,20 @@ body {
   font-size: 1.8rem;
   color: var(--primary-color);
   margin: 0;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;   /* garante que nada transborde */
+}
+
+.filters-inner {
+  display: flex;
+  flex-wrap: wrap;      /* permite quebra de linha */
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 100%;      /* não ultrapassa a tela */
+  box-sizing: border-box;
 }
 
 /* Bloco da marca (logo + título opcional) */
