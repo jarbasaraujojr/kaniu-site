@@ -8,12 +8,17 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
-  <div class="header">
-    <div class="header-content" style="justify-content: space-between; width: 100%;">
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <img class="header-logo" src="assets/logo.png" alt="Logo Kaniu"/>
-      </div>
-      <div class="filter-container">
+<div class="header">
+  <div class="header-content">
+    <div class="brand">
+      <img class="header-logo" src="assets/logo.png" alt="Logo Kaniu"/>
+      <!-- se quiser título ao lado da logo, descomente:
+      <h1 class="header-title">Kaniu</h1>
+      -->
+    </div>
+
+    <div class="filters">
+      <div class="filters-inner">
         <button class="status-filter-btn" data-status="Abrigado">Abrigados</button>
         <button class="status-filter-btn" data-status="Adotado">Adotados</button>
         <button class="status-filter-btn" data-status="Internado">Internados</button>
@@ -22,6 +27,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <div class="main-container">
     <div class="list-container" id="animal-list">
