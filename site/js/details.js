@@ -1,27 +1,37 @@
-const API_URL = "/api/animal"; // proxy do nginx → Supabase/n8n
+const API_URL = "/api/animals";
+
+// Pegar parâmetro id da URL
+const params = new URLSearchParams(window.location.search);
+const animalId = params.get("id");
 
 async function loadAnimal() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  if (!id) return;
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
 
-  const res = await fetch(`${API_URL}?id=${id}`);
-  const animal = await res.json();
+    const animal = data.animals.find(a => a.id === animalId);
 
-  document.getElementById("animal-photo").src = animal.foto;
-  document.getElementById("animal-nome").textContent = animal.nome;
+    if (!animal) {
+      document.getElementById("animal-details").innerHTML = "<p>Animal não encontrado.</p>";
+      return;
+    }
 
-  // Render detalhes
-  const details = `
-    <div><strong>Espécie:</strong> ${animal.especie}</div>
-    <div><strong>Raça:</strong> ${animal.raça}</div>
-    <div><strong>Sexo:</strong> ${animal.sexo}</div>
-    <div><strong>Porte:</strong> ${animal.porte}</div>
-    <div><strong>Cor:</strong> ${animal.cor}</div>
-    <div><strong>Pelagem:</strong> ${animal.pelagem}</div>
-    <div><strong>Idade:</strong> ${animal.faixa_etaria}</div>
-    <div><strong>Peso:</strong> ${animal.peso || "-"} kg</div>`;
-  document.getElementById("animal-details").innerHTML = details;
+    document.getElementById("animal-details").innerHTML = `
+      <div class="animal-card">
+        <img src="${animal.picture_url || 'https://via.placeholder.com/300'}" alt="Foto de ${animal.name}">
+        <h2>${animal.name}</h2>
+        <p><strong>Espécie:</strong> ${animal.species || "-"}</p>
+        <p><strong>Raça:</strong> ${animal.breed || "-"}</p>
+        <p><strong>Porte:</strong> ${animal.size || "-"}</p>
+        <p><strong>Sexo:</strong> ${animal.sex || "-"}</p>
+        <p><strong>Faixa Etária:</strong> ${animal.age_range || "-"}</p>
+        <p><strong>Abrigo:</strong> ${animal.shelter || "-"}</p>
+      </div>
+    `;
+  } catch (err) {
+    console.error("Erro ao carregar detalhes:", err);
+    document.getElementById("animal-details").innerHTML = "<p>Erro ao carregar dados do animal.</p>";
+  }
 }
 
 loadAnimal();
