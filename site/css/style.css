@@ -166,3 +166,30 @@ body {
   font-weight: 500;
   white-space: nowrap;
 }
+.animal-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  padding: 10px;
+  margin: 10px;
+  width: 220px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.animal-card img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.animal-card h3 {
+  font-size: 1rem;
+  margin: 4px 0;
+}
+
+.animal-card p {
+  font-size: 0.85rem;
+  margin: 2px 0;
+}
