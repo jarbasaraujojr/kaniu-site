@@ -1,0 +1,132 @@
+{
+  "module": "Animais & Saúde",
+  "tables": {
+    "animais": {
+      "columns": {
+        "animal_id": "uuid (PK, default gen_random_uuid())",
+        "criado": "timestamptz (default now())",
+        "nome": "text",
+        "nascimento": "date",
+        "genero": "text (FK -> generos.genero)",
+        "raça": "text (FK -> racas.raca)",
+        "especie": "text (FK -> especies.especie)",
+        "cor": "text (FK -> cores.cor)",
+        "pelagem": "text (FK -> pelagens.pelagem)",
+        "falecido": "boolean",
+        "foto": "text",
+        "castrado": "boolean",
+        "desaparecido": "boolean",
+        "vacinado": "boolean",
+        "vermifugado": "boolean",
+        "desparasitado": "boolean",
+        "peso": "real",
+        "porte": "text (FK -> portes.porte)",
+        "torax": "integer",
+        "comprimento": "integer",
+        "pescoço": "integer",
+        "altura": "integer",
+        "faixaetaria": "text (FK -> idades.idade)",
+        "canil": "bigint (FK -> canis.id)",
+        "adotado": "boolean",
+        "diagnosticos": "array",
+        "internado": "boolean",
+        "disponivel": "boolean",
+        "idx": "bigint (identity)",
+        "album": "text"
+      }
+    },
+    "animais_descricao": {
+      "columns": {
+        "id": "integer (PK, identity)",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "descricao": "text"
+      }
+    },
+    "pesagens": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "data": "date",
+        "peso": "real"
+      }
+    },
+    "medidas": {
+      "columns": {
+        "medida_id": "bigint (PK, identity)",
+        "criacao": "timestamptz (default now())",
+        "altura": "integer",
+        "comprimento": "integer",
+        "pescoco": "integer",
+        "torax": "integer",
+        "animal": "uuid (FK -> animais.animal_id)"
+      }
+    },
+    "anamneses_registros": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "observacao": "text",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "data": "date (default now())",
+        "veterinario": "uuid (FK -> veterinarios.vet_id)",
+        "condicoes": "array",
+        "temperatura": "real",
+        "score": "smallint",
+        "pesagem": "bigint (FK -> pesagens.id)"
+      }
+    },
+    "diagnostico": {
+      "columns": {
+        "id": "integer (PK, identity)",
+        "nome": "text",
+        "especie": "text (FK -> especies.especie)",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    },
+    "imunizacao": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "criacao": "timestamptz (default now())",
+        "tipo": "text (FK -> imunizacao_tipo.id)",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "veterinario": "uuid (FK -> veterinarios.vet_id)",
+        "clinica": "text (FK -> clinicas.clinica)",
+        "tarefa": "bigint (FK -> tarefa.id)",
+        "imunizante": "bigint (FK -> imunizante.id)",
+        "observacao": "text",
+        "registro": "bigint (FK -> registros.registro_id)"
+      }
+    },
+    "imunizacao_tipo": {
+      "columns": {
+        "id": "text (PK)",
+        "icone": "text",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    },
+    "imunizante": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "imunizacao_tipo": "text (FK -> imunizacao_tipo.id)",
+        "especie": "text (FK -> especies.especie)",
+        "nome": "text",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    },
+    "vacinacoes": {
+      "columns": {
+        "vacina_id": "bigint (PK, identity)",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "data": "date",
+        "aplicada": "boolean",
+        "tipo": "text (FK -> vacinas_tipos.tipoVacina)"
+      }
+    },
+    "vacinas_tipos": {
+      "columns": {
+        "tipoVacina": "text (PK)",
+        "especie": "text (FK -> especies.especie)",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    }
+  }
+}
