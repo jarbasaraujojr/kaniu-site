@@ -1,0 +1,79 @@
+{
+  "module": "Outros / Misc",
+  "tables": {
+    "arquivos": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "aquivo": "text",
+        "nome": "text",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "registro": "bigint (FK -> registros.registro_id)",
+        "criacao": "date",
+        "observacao": "text",
+        "apagado": "boolean (default false)"
+      }
+    },
+    "caracteristicas": {
+      "columns": {
+        "caracteristica": "bigint (PK, identity)",
+        "positiva": "boolean"
+      }
+    },
+    "condicoes_parametro": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "condicao": "text",
+        "parametro": "text (FK -> parametros_anamnese.parametro)",
+        "negativo": "boolean (default false)",
+        "valor": "smallint (default 0)",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    },
+    "parametros_anamnese": {
+      "columns": {
+        "parametro": "text (PK)",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    },
+    "resgates": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "data": "date",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "local": "text"
+      }
+    },
+    "documents": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "content": "text",
+        "fts": "tsvector (search index)",
+        "embedding": "user-defined",
+        "metadata": "jsonb"
+      }
+    },
+    "document_metadata": {
+      "columns": {
+        "id": "text (PK)",
+        "title": "text",
+        "url": "text",
+        "created_at": "timestamp (default now())",
+        "schema": "text"
+      }
+    },
+    "document_rows": {
+      "columns": {
+        "id": "integer (PK, identity)",
+        "dataset_id": "text (FK -> document_metadata.id)",
+        "row_data": "jsonb"
+      }
+    },
+    "n8n_chat_histories": {
+      "columns": {
+        "id": "integer (PK, identity)",
+        "session_id": "varchar",
+        "message": "jsonb"
+      }
+    }
+  }
+}
