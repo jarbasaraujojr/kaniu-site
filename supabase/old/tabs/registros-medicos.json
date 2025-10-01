@@ -1,0 +1,109 @@
+{
+  "module": "Registros Médicos & Tratamentos",
+  "tables": {
+    "registros": {
+      "columns": {
+        "registro_id": "bigint (PK, identity)",
+        "data": "date",
+        "tipo": "text (FK -> registros_tipos.tipoRegistro)",
+        "veterinario_id": "uuid (FK -> veterinarios.vet_id)",
+        "descricao": "text",
+        "animal_id": "uuid (FK -> animais.animal_id)",
+        "clinica": "text (FK -> clinicas.clinica)",
+        "pendente": "boolean (default false)",
+        "criado_em": "timestamp (default now())",
+        "criado_por": "uuid (FK -> usuarios.user_id)",
+        "previsto_data": "timestamp",
+        "realizado_data": "timestamp"
+      }
+    },
+    "registros_tipos": {
+      "columns": {
+        "tipoRegistro": "text (PK)",
+        "indice": "smallint",
+        "icone": "text"
+      }
+    },
+    "receita": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "data": "date (default now())",
+        "veterinario": "uuid (FK -> veterinarios.vet_id)",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "salva": "boolean (default false)"
+      }
+    },
+    "prescricao": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "inicio": "date",
+        "receita": "bigint (FK -> receita.id)",
+        "medicamento": "bigint (FK -> medicamento.id)",
+        "continuo": "boolean (default false)",
+        "duracao_dias": "smallint",
+        "dosagem": "text",
+        "via": "text",
+        "descricao": "text",
+        "intervalo_horas": "smallint",
+        "criacao": "timestamp (default now())",
+        "finalizada": "boolean (default false)",
+        "inicio_horario": "time",
+        "salva": "boolean (default false)",
+        "dose": "text"
+      }
+    },
+    "prescricao_tarefa": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "realizacao": "timestamp (default now())",
+        "prescricao": "bigint (FK -> prescricao.id)",
+        "pessoa": "uuid (FK -> usuarios.user_id)",
+        "concluida": "boolean (default false)",
+        "observacao": "text",
+        "dia": "date",
+        "hora": "time",
+        "tratador": "text"
+      }
+    },
+    "medicamento": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "nome": "text",
+        "canil_id": "bigint (FK -> canis.id)"
+      }
+    },
+    "medicamento_dosagem": {
+      "columns": {
+        "id": "text (PK)",
+        "indice": "smallint (identity)"
+      }
+    },
+    "medicamento_via": {
+      "columns": {
+        "id": "text (PK)"
+      }
+    },
+    "medicacao_falhas": {
+      "columns": {
+        "id": "text (PK)"
+      }
+    },
+    "tarefa": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "data_criada": "date (default now())",
+        "data_prevista": "date",
+        "data_realizada": "date",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "tipo": "text (FK -> tarefa_tipo.tipo)",
+        "descricao": "text"
+      }
+    },
+    "tarefa_tipo": {
+      "columns": {
+        "tipo": "text (PK)",
+        "icone": "text"
+      }
+    }
+  }
+}
