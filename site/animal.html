@@ -5,19 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalhes do Animal</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <script src="https://kit.fontawesome.com/78b7eb0968.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="header">
+  <header class="header">
     <div class="header-content">
-      <a href="index.html"><img class="header-logo" src="assets/logo.png" alt="Logo Kaniu"></a>
+      <a href="index.html"><img class="header-logo" src="assets/logo.png" alt="Logo Kaniu"/></a>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div id="animal-details" class="animal-details-frame">
+      <!-- JS (detail.js) preenche aqui -->
+    </div>
+
+    <div class="tab-container">
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="resumo">Resumo</button>
+        <button class="tab-btn" data-tab="eventos">Histórico</button>
+        <button class="tab-btn" data-tab="avaliacoes">Avaliação</button>
+        <button class="tab-btn" data-tab="pesagens">Pesagem</button>
+        <button class="tab-btn" data-tab="imunizacoes">Imunização</button>
+        <button class="tab-btn" data-tab="tratamentos">Tratamento</button>
+        <button class="tab-btn" data-tab="arquivos">Arquivos</button>
+      </div>
+
+      <div class="tab-content-area">
+        <div id="tab-resumo" class="tab-content active"></div>
+        <div id="tab-eventos" class="tab-content"></div>
+        <div id="tab-avaliacoes" class="tab-content"></div>
+        <div id="tab-pesagens" class="tab-content"></div>
+        <div id="tab-imunizacoes" class="tab-content"></div>
+        <div id="tab-tratamentos" class="tab-content"></div>
+        <div id="tab-arquivos" class="tab-content"></div>
+      </div>
     </div>
   </div>
 
-  <div class="main-container">
-    <div id="animal-details" class="animal-details">
-      <!-- Conteúdo será renderizado pelo JS -->
-    </div>
-  </div>
+  <div id="overlay" class="overlay"></div>
+  <div id="alert-popup" class="alert-popup"><span id="alert-message"></span></div>
 
   <script src="js/detail.js"></script>
 </body>
