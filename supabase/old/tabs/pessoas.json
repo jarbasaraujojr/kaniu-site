@@ -1,0 +1,127 @@
+{
+  "module": "Pessoas & Adoção",
+  "tables": {
+    "pessoa": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "cadastro": "date (default now())",
+        "nome": "text",
+        "nascimento": "date",
+        "telefone": "text",
+        "email": "text (unique)",
+        "usuario": "uuid (FK -> usuarios.user_id)",
+        "sexo": "smallint (FK -> sexo.id)",
+        "renda_sm": "smallint",
+        "escolaridade": "text (FK -> escolaridade.id)",
+        "profissao": "text",
+        "end_cep": "text",
+        "end_uf": "varchar",
+        "end_cidade": "text",
+        "end_bairro": "text",
+        "end_numero": "bigint",
+        "end_complemento": "text",
+        "end_logradouro": "text",
+        "whatsap_id": "text",
+        "contacts_id": "text"
+      }
+    },
+    "escolaridade": {
+      "columns": {
+        "id": "text (PK)"
+      }
+    },
+    "sexo": {
+      "columns": {
+        "id": "smallint (PK, identity)",
+        "nome": "text"
+      }
+    },
+    "questionario": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "criacao": "date (default now())",
+        "profissao": "text",
+        "renda": "smallint",
+        "endereco": "text",
+        "rede_social": "text",
+        "moradia_tipo": "text (FK -> moradia_tipos.tipo_moradia)",
+        "moradia_propria": "boolean",
+        "moradores_quantidade": "smallint",
+        "moradores_favoraveis": "boolean",
+        "moradores_alergia": "boolean",
+        "caes_qtd": "smallint",
+        "vacinar_concorda": "boolean",
+        "castrar_concorda": "boolean",
+        "educar_concorda": "boolean",
+        "passear_concorda": "boolean",
+        "informar_concorda": "boolean",
+        "passeios_mes": "smallint",
+        "endCep": "text",
+        "endLogradouro": "text",
+        "endNumero": "text",
+        "endCidade": "text",
+        "endUF": "text",
+        "endBairro": "text",
+        "animais_castrados": "boolean",
+        "animais_vacinados": "boolean",
+        "animais_falecimento": "boolean",
+        "gatos_qtd": "smallint",
+        "janelas_teladas": "boolean",
+        "animal_dormir": "text",
+        "animais_responsavel": "text",
+        "acesso_casa": "boolean",
+        "acesso_rua": "boolean",
+        "sozinho_horas": "smallint",
+        "buscar_concorda": "boolean",
+        "racao_tipo": "text",
+        "animal_incomodo": "array",
+        "contribuir_concorda": "boolean",
+        "outros_animais": "boolean",
+        "passeios": "text",
+        "animais_permitidos": "boolean",
+        "pessoa_id": "bigint (FK -> pessoa.id)"
+      }
+    },
+    "conexao": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "data": "date (default now())",
+        "pessoa": "bigint (FK -> pessoa.id)",
+        "animal": "uuid (FK -> animais.animal_id)",
+        "encerrada": "boolean"
+      }
+    },
+    "conexao_status": {
+      "columns": {
+        "id": "text (PK)",
+        "indice": "smallint",
+        "negativo": "boolean (default false)",
+        "terminou": "boolean (default false)"
+      }
+    },
+    "conexao_registro": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "data": "timestamp (default now())",
+        "status": "text (FK -> conexao_status.id)",
+        "observacao": "text"
+      }
+    },
+    "interessado_animal": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "data": "timestamptz (default now())",
+        "pessoa": "bigint (FK -> questionario.id)",
+        "animal": "uuid (FK -> animais.animal_id)"
+      }
+    },
+    "pessoa_likes": {
+      "columns": {
+        "id": "bigint (PK, identity)",
+        "pessoa_id": "bigint (FK -> pessoa.id)",
+        "animais": "array",
+        "usuario": "uuid (FK -> usuarios.user_id)"
+      }
+    }
+  }
+}
