@@ -26,11 +26,13 @@ function renderAnimals(animals) {
   }
 
   animals.forEach(animal => {
+    const imgUrl = animal.profile_picture_url || "https://i.ibb.co/MxRhsM0X/no-image-dog.png";
+
     const card = `
       <a href="animal.html?id=${animal.id}" class="animal-list-link">
         <div class="animal-strip">
           <div class="animal-photo-list-container">
-            <img class="animal-photo-list" src="${animal.picture_url || 'https://via.placeholder.com/150'}" alt="Foto de ${animal.name}"/>
+            <img class="animal-photo-list" src="${imgUrl}" alt="Foto de ${animal.name}"/>
           </div>
           <div class="list-content">
             <h3>${animal.name}</h3>
