@@ -36,7 +36,7 @@ function renderAnimals(animals) {
             <h3>${animal.name}</h3>
             <div class="characteristics-container">
               <span class="characteristic-box">${animal.species || "-"}</span>
-              <span class="characteristic-box">${animal.sex || "-"}</span>
+              <span class="characteristic-box">${animal.gender || "-"}</span>
               <span class="characteristic-box">${animal.size || "-"}</span>
               <span class="characteristic-box">${animal.age_range || "-"}</span>
             </div>
