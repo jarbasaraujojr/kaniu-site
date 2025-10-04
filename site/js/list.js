@@ -6,7 +6,8 @@ async function loadAnimals() {
     const res = await fetch(API_URL);
     const data = await res.json();
 
-    allAnimals = data.animals || [];
+    // ✅ Corrigido: trata retorno como array OU objeto com 'animals'
+    allAnimals = Array.isArray(data) ? data : (data.animals || []);
     renderAnimals(allAnimals);
   } catch (err) {
     console.error("Erro ao carregar animais:", err);
